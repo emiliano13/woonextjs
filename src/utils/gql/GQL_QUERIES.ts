@@ -146,19 +146,25 @@ export const FETCH_ALL_PRODUCTS_QUERY = gql`
  */
 export const FETCH_ALL_CATEGORIES_QUERY = gql`
   query Categories {
-    productCategories(first: 20) {
+    productCategories(first: 1000, where: { parent: 0, hideEmpty: true }) {
       nodes {
         id
         name
         slug
+        image {
+          sourceUrl(size: WOOCOMMERCE_SINGLE)
+        }
       }
     }
   }
 `;
 
 export const GET_PRODUCTS_FROM_CATEGORY = gql`
-  query ProductsFromCategory($id: ID!) {
-    productCategory(id: $id) {
+query ProductCategoryBySlug($slug: ID!) {
+  productCategory(id: $slug, idType: SLUG) {
+
+  # query ProductsFromCategory($id: ID!) {
+  #   productCategory(id: $id) {
       id
       name
       products(first: 50) {
@@ -183,30 +189,8 @@ export const GET_PRODUCTS_FROM_CATEGORY = gql`
             onSale
             price
             id
-          }
-          ... on VariableProduct {
-            salePrice
-            regularPrice
-            onSale
-            price
-            id
-          }
-          ... on ExternalProduct {
-            price
-            id
-            externalUrl
-          }
-          ... on GroupProduct {
-            products {
-              nodes {
-                ... on SimpleProduct {
-                  id
-                  price
-                }
-              }
-            }
-            id
-          }
+          }         
+          
         }
       }
     }
@@ -292,6 +276,41 @@ export const GET_CART = gql`
       feeTotal
       discountTax
       discountTotal
+    }
+  }
+`;
+
+/*** */
+export const QUERY_PRODUCT_CATEGORY_BY_SLUG = gql`
+  query ProductCategoryBySlug($slug: ID!) {
+    productCategory(id: $slug, idType: SLUG) {
+      databaseId
+      description
+      name
+      id
+      slug
+      children(where: { hideEmpty: true }) {
+        nodes {
+          name
+          id
+          databaseId
+          count
+          slug
+          image {
+            sourceUrl(size: WOOCOMMERCE_SINGLE)
+          }
+          products(first: 1) {
+            nodes {
+              name
+              featuredImage {
+                node {
+                  sourceUrl(size: WOOCOMMERCE_SINGLE)
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

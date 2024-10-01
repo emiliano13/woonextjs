@@ -87,7 +87,7 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
                   <span>
                     {image ? (                      
                       <Image
-                        src={image.sourceUrl}
+                        src={image.sourceUrl!}
                         priority={true}
                         width={250}
                         height={250}

@@ -314,3 +314,143 @@ export const QUERY_PRODUCT_CATEGORY_BY_SLUG = gql`
     }
   }
 `;
+
+
+
+export const QUERY_ALL_MENUS = gql`
+  query AllMenus {
+    menus {      
+        nodes {
+          id
+          menuItems(first: 100) {
+            edges {
+              node {
+                cssClasses
+                id
+                parentId
+                label
+                title
+                target
+                path
+              }
+            }
+          }
+          name
+          slug
+          locations
+        }
+      }
+    }
+  
+`;
+
+
+export const PAGE_FIELDS = gql`
+  fragment PageFields on Page {
+    children {
+      edges {
+        node {
+          id
+          slug
+          uri
+          ... on Page {
+            id
+            title
+          }
+        }
+      }
+    }
+    id
+    menuOrder
+    parent {
+      node {
+        id
+        slug
+        uri
+        ... on Page {
+          title
+        }
+      }
+    }
+    slug
+    title
+    uri
+  }
+`;
+export const QUERY_ALL_PAGES = gql`
+  ${PAGE_FIELDS}
+  query AllPagesIndex {
+    pages(first: 10000, where: { hasPassword: false }) {
+      edges {
+        node {
+          ...PageFields
+          content
+          featuredImage {
+            node {
+              altText
+              caption
+              id
+              sizes
+              sourceUrl
+              srcSet
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+
+
+
+export const QUERY_GET_MENU_BY_LOCATION = gql`
+  query GetMenuByLocation($slug: MenuLocationEnum!) {
+    menus(where: {location: $slug}) {      
+        nodes {
+          id
+          menuItems(first: 100) {            
+              nodes {
+                cssClasses
+                id
+                parentId
+                label
+                title
+                target
+                path
+              }            
+          }
+          name
+          slug
+          locations
+        }
+      }
+    }
+  
+`;
+
+
+export const QUERY_ALL_CATEGORIES_MENU = gql`
+  query AllProductCategoriesMenu {
+    productCategories(first: 10000, where: { parent: 0, hideEmpty: true }) {
+      nodes {
+        name
+        id
+        children(where: { hideEmpty: true }) {
+          edges {
+            node {
+              name
+              slug
+              id
+              databaseId
+              description
+            }
+          }
+        }
+        slug
+        databaseId
+        description
+      }
+    }
+  }
+`;

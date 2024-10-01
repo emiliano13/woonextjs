@@ -5,10 +5,11 @@ import Layout from '@/components/Layout/Layout.component';
 import DisplayProducts from '@/components/Product/DisplayProducts.component';
 import DisplaySubcategories from '../../components/Category/DisplaySubcategories.component';
 
+import CategoriesMenu from '@/components/CategoriesMenu';
 
 import client from '@/utils/apollo/ApolloClient';
 
-import { QUERY_PRODUCT_CATEGORY_BY_SLUG, GET_PRODUCTS_FROM_CATEGORY } from '@/utils/gql/GQL_QUERIES';
+import { QUERY_PRODUCT_CATEGORY_BY_SLUG, GET_PRODUCTS_FROM_CATEGORY, QUERY_ALL_CATEGORIES_MENU } from '@/utils/gql/GQL_QUERIES';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
 /**
@@ -17,10 +18,17 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 const ProductCategorie = ({
   categoryName,
   category,
-  products
+  products,
+  categories
 }) => {
   return (
     <Layout title={`${categoryName ? categoryName : ''}`}>
+        <div className="grid grid-cols-5 gap-4">
+        
+        <div className="col-span-1 p-4">{<CategoriesMenu categories={categories} />}</div>
+        
+
+        <div className="col-span-4 p-4">
           {category.children.nodes.length ? (
             <DisplaySubcategories subcategories={category.children.nodes} parentSlug={category.slug} />
         ) : (            
@@ -40,6 +48,8 @@ const ProductCategorie = ({
        ) : (
          <div className="mt-8 text-2xl text-center">Laster produkt ...</div>
        )} */}
+       </div>
+       </div>
     </Layout>
   );
 };
@@ -66,12 +76,18 @@ const res2 = await client.query({
     variables: { slug },
   });
 
+  
+  const res3 = await client.query({
+    query: QUERY_ALL_CATEGORIES_MENU
+  });
 
+  //console.dir(`products T ${JSON.stringify(res2.data)} ` )
   return {
     props: {
       categoryName: res.data.productCategory.name,
       products: res2.data.productCategory.products.nodes,
-      category: res.data.productCategory
+      category: res.data.productCategory,
+      categories: res3.data.productCategories.nodes
     },
   };
 };

@@ -27,7 +27,6 @@ const ProductCategorie = ({
         
         <div className="col-span-1 p-4">{<CategoriesMenu categories={categories} />}</div>
         
-
         <div className="col-span-4 p-4">
           {category.children.nodes.length ? (
             <DisplaySubcategories subcategories={category.children.nodes} parentSlug={category.slug} />
@@ -38,9 +37,8 @@ const ProductCategorie = ({
                   <DisplayProducts products={products} />
                 </div>
               ) : (
-                <div className="mt-8 text-2xl text-center">No tiene productos</div>
-              )}
-              <div>No tiene hijos</div>
+                <div className="mt-8 text-2xl text-center">No hay productos...</div>
+              )}              
             </>
           )}
        {/* {products ? (
@@ -60,22 +58,19 @@ export const getServerSideProps = async ({ params = {} ,
 }) => {
     console.log(params)
     const slug = params.slug[1] ? params.slug[1] : params.slug[0];
-    
-
-  console.log(`SLUG ${slug}`)
+  //console.log(`SLUG ${slug}`)
   const res = await client.query({
     query: QUERY_PRODUCT_CATEGORY_BY_SLUG,
     variables: { slug },
   });
-console.log(res.data.productCategory)
+
 if(!res.data.productCategory.children.nodes.length){
-    console.log("no tiene hijos")
+//    console.log("no tiene hijos")
 }
 const res2 = await client.query({
     query: GET_PRODUCTS_FROM_CATEGORY,
     variables: { slug },
   });
-
   
   const res3 = await client.query({
     query: QUERY_ALL_CATEGORIES_MENU

@@ -9,12 +9,21 @@ export const GET_SINGLE_PRODUCT = gql`
       slug
       description
       onSale
+      featuredImage {
+        node {
+          id
+          sourceUrl(size: WOOCOMMERCE_SINGLE)
+          mediaItemUrl
+          srcSet
+          altText
+        }
+      }
       image {
         id
         uri
         title
         srcSet
-        sourceUrl
+        sourceUrl(size: WOOCOMMERCE_SINGLE)
       }
       name
       ... on SimpleProduct {
@@ -24,51 +33,47 @@ export const GET_SINGLE_PRODUCT = gql`
         id
         stockQuantity
       }
-      ... on VariableProduct {
+      
+    }
+  }
+`;
+
+
+export const GET_SINGLE_PRODUCT_BY_SLUG = gql`
+  query Product($slug: ID!) {
+    product(id: $slug, idType: SLUG) {
+      id
+      databaseId
+      averageRating
+      slug
+      description
+      excerpt
+      onSale
+      featuredImage {
+        node {
+          id
+          sourceUrl(size: WOOCOMMERCE_SINGLE)
+          mediaItemUrl
+          srcSet
+          altText
+        }
+      }
+      image {
+        id
+        uri
+        title
+        srcSet
+        sourceUrl(size: WOOCOMMERCE_SINGLE)
+      }
+      name
+      ... on SimpleProduct {
         salePrice
         regularPrice
         price
         id
-        allPaColors {
-          nodes {
-            name
-          }
-        }
-        allPaSizes {
-          nodes {
-            name
-          }
-        }
-        variations {
-          nodes {
-            id
-            databaseId
-            name
-            stockStatus
-            stockQuantity
-            purchasable
-            onSale
-            salePrice
-            regularPrice
-          }
-        }
+        stockQuantity
       }
-      ... on ExternalProduct {
-        price
-        id
-        externalUrl
-      }
-      ... on GroupProduct {
-        products {
-          nodes {
-            ... on SimpleProduct {
-              id
-              price
-            }
-          }
-        }
-        id
-      }
+      
     }
   }
 `;
@@ -115,7 +120,7 @@ export const FETCH_ALL_PRODUCTS_QUERY = gql`
         onSale
         slug
         image {
-          sourceUrl
+          sourceUrl(size: WOOCOMMERCE_SINGLE)
         }
         ... on SimpleProduct {
           databaseId
@@ -180,7 +185,7 @@ query ProductCategoryBySlug($slug: ID!) {
             uri
             title
             srcSet
-            sourceUrl
+            sourceUrl(size: WOOCOMMERCE_SINGLE)
           }
           name
           ... on SimpleProduct {

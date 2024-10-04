@@ -6,7 +6,7 @@ const NavListItem = ({ className, item }) => {
   const nestedItems = (item.children || []).map((item) => {
     return <NavListItem key={item.id} item={item} />;
   });
-console.log(nestedItems)
+
   return (
     <li key={item.id}>
       {/* 

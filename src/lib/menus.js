@@ -21,13 +21,13 @@ export async function getAllMenus() {
       variables:  { slug } ,    
   });
  // const menus = data?.data.menus.nodes.map(mapMenuData);
-  console.log(`menus data ${JSON.stringify(data.data.menus.nodes[0].menuItems)} ` )
+  //console.log(`menus data ${JSON.stringify(data.data.menus.nodes[0].menuItems)} ` )
 const dataParsed = parseHierarchicalMenu(data.data.menus.nodes[0].menuItems.nodes)
-console.log(dataParsed)
+//console.log(dataParsed)
   return { dataParsed };
   
   //const menus = data?.data.menus.edges.map(mapMenuData);
-  console.log(`menus menus ${menus} ` )
+  
   const defaultNavigation = createMenuFromPages({
     locations: [MENU_LOCATION_NAVIGATION_DEFAULT],
     pages: await getTopLevelPages({
@@ -93,8 +93,7 @@ export const parseHierarchicalMenu = (
   const childrenOf = {};
 
   data.forEach((item) => {
-    const newItem = { ...item };
-    console.log(`new item ${JSON.stringify(newItem)}`);
+    const newItem = { ...item };    
     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];

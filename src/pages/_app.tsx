@@ -11,7 +11,8 @@ import client from '@/utils/apollo/ApolloClient';
 import type { AppProps } from 'next/app';
 
 // Styles
-import '@/styles/globals.css';
+
+import '@/styles/globals.scss';
 import 'nprogress/nprogress.css';
 
 // NProgress

@@ -84,7 +84,7 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
                 <Link
                   href={`/produit/${encodeURIComponent(slug,)}`}
                 >
-                  <span>
+                  
                     {image ? (                      
                       <Image
                         src={image.sourceUrl!}
@@ -108,7 +108,7 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
                         }
                       />
                     )}
-                  </span>
+                  
                 </Link>
                 <Link
                   href={`/produkt/${encodeURIComponent(

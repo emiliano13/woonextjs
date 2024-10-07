@@ -4,9 +4,11 @@ import { withRouter } from 'next/router';
 import Layout from '@/components/Layout/Layout.component';
 import DisplayProducts from '@/components/Product/DisplayProducts.component';
 import DisplaySubcategories from '../../components/Category/DisplaySubcategories.component';
+import NextBreadcrumb from '@/components/BreadCrumb';
 
 import CategoriesMenu from '@/components/CategoriesMenu';
 
+import { usePathname } from 'next/navigation';
 import client from '@/utils/apollo/ApolloClient';
 
 import { QUERY_PRODUCT_CATEGORY_BY_SLUG, GET_PRODUCTS_FROM_CATEGORY, QUERY_ALL_CATEGORIES_MENU } from '@/utils/gql/GQL_QUERIES';
@@ -21,13 +23,50 @@ const ProductCategorie = ({
   products,
   categories
 }) => {
+
+    const paths = usePathname();
+  const pathNames = paths.split('/').filter((path) => path);
+  let breadCrumb = [];
+  categories?.map((item) => {
+    if (item.slug == pathNames[1]) {
+      let nodo = {
+        name: item.name,
+        slug: item.slug,
+      };
+      console.log(`activee ${item.name}`);
+      breadCrumb.push(nodo);
+    }
+    item.children.edges.map((item2) => {
+      if (item2.node.slug == pathNames[2]) {
+        let nodo = {
+          name: item2.node.name,
+          slug: `${item.slug}/${item2.node.slug}`,
+        };
+        breadCrumb.push(nodo);
+      }
+    });
+    //ESTA ES LA BUENA
+    //const isActive2 = pathname2.startsWith(item.slug);
+  });
   return (
     <Layout title={`${categoryName ? categoryName : ''}`}>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        
         
         <div className="col-span-1 p-4">{<CategoriesMenu categories={categories} />}</div>
         
         <div className="col-span-4 p-4">
+
+        <NextBreadcrumb
+            categories={breadCrumb}
+            homeElement={'Accueil'}
+            separator={<span className="text-sm"> / </span>}
+            activeClasses="text-amber-500"
+            containerClasses="flex pb-2 pl-0 breadcrumb"
+            listClasses="hover:text-gray-900 mx-2 text-gray-400 text-sm "
+            capitalizeLinks
+          />
+
           {category.children.nodes.length ? (
             <DisplaySubcategories subcategories={category.children.nodes} parentSlug={category.slug} />
         ) : (            

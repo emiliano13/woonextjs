@@ -79,7 +79,7 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
             return (
               <div
                 key={uuidv4()}
-                className="flex flex-col p-6 md:w-1/2 xl:w-1/4 product-box"
+                className="flex flex-col p-1 md:p-6 md:w-1/2 xl:w-1/4 product-box"
               >
                 <Link
                   href={`/produit/${encodeURIComponent(slug,)}`}

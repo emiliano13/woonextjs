@@ -13,9 +13,9 @@
 @import 'node_modules/@wordpress/block-library/src/style.scss';
 @import 'node_modules/@wordpress/block-library/src/theme.scss';
 
-ul {
-  padding-left: 1.2em;
-}
+// ul {
+//   padding-left: 1.2em;
+// }
 .aligncenter {
   text-align: center;
 }
@@ -401,6 +401,36 @@ figure img{
 
 ul.product-categories>li ul{
   border-left: 1px solid #ddd;
+}
+
+.entry-content ul{
+  list-style: disc;
+  font-family: var(--font-lato);
+}
+.entry-content ul li, .entry-summary ol li, .entry-summary ul li {
+  margin-left: 1.3em;
+  margin-bottom: .6em;
+}
+/** FOOTER **/
+.footer-titulo{
+  font-size: 16px;
+  color: #2e3540;
+}
+.footer-titulo span{
+  color: #799067;
+}
+.footer-titulo a{
+  color: #2e3540;
+}
+.footer-titulo img{
+  display: inline-block;
+}
+.nav-footer a {
+  font-family: var(--font-geogrotesque); 
+  color: #799067;
+  text-transform: uppercase;
+  border-bottom: 1px solid #799067;
+  line-height: 30px;
 }
 /****/
 #cart-div {

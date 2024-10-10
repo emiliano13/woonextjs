@@ -48,6 +48,8 @@ const Produkt = ({
         <div className="is-divider"></div>
 
         <div className="pt-1 mt-4 text-sm text-gray-500" dangerouslySetInnerHTML={{ __html: product.excerpt }} />
+
+        <div className="pt-1 mt-4 text-sm text-gray-500 entry-content" dangerouslySetInnerHTML={{ __html: product.description }} />
         </div>
           </div>
         </div>

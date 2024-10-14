@@ -13,6 +13,19 @@
 @import 'node_modules/@wordpress/block-library/src/style.scss';
 @import 'node_modules/@wordpress/block-library/src/theme.scss';
 
+@media (min-width: 1240px)  {
+.container {
+  max-width: 100%;
+}
+}
+@media (max-width: 767px) {
+  .wp-block-group{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+  }
+  
+}
 // ul {
 //   padding-left: 1.2em;
 // }
@@ -264,7 +277,7 @@ body {
 }
 /** ARREGLAR FIXED NAV MENU**/
 main {
-  padding-top: 150px;
+  padding-top: 120px;
 }
 h1, h2, h3{
   font-family: var(--font-geogrotesque);
@@ -301,13 +314,29 @@ p{
     vertical-align: bottom !important;
 }
 .mt-n-100{
-  margin-top: -100px!important;
+  margin-top: -150px!important;
+}
+.py-100{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.pb-100{
+  padding-bottom: 100px;
 }
 figure img{
   border: unset;
   background: none;
 }
+@media(max-width: 767px) {
+.mt-n-100{
+  margin-top: -10px!important;
+}
+}
+
 /** NAV **/
+.sticky-nav{
+  background: rgba(120, 139, 103, 0.7);
+}
 .primary-nav {
   position: fixed;
     left: 0;
@@ -411,6 +440,18 @@ ul.product-categories>li ul{
   margin-left: 1.3em;
   margin-bottom: .6em;
 }
+/**PAGES **/
+.heading-wrapper{
+  padding-bottom: 80px;
+}
+.heading-wrapper .wp-block-heading{
+  width: 80%;
+}
+.heading-wrapper h1 {
+  font-size: 74px;
+  line-height: 94px;
+}
+
 /** FOOTER **/
 .footer-titulo{
   font-size: 16px;

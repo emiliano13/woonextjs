@@ -89,7 +89,7 @@ const Layout = ({ children, title }: ILayoutProps) => {
   return (
     // className="flex flex-col min-h-screen w-full mx-auto"
     <div className={`${lato.variable} ${geogrotesqueRegular.className} ${geogrotesque.variable} flex flex-col min-h-screen w-full mx-auto`}> 
-      <div className="container min-w-[140vw] sm:min-w-[95vw] md:px-4 lg:px-6 py-2 lg:max-w-[1600px] mx-auto">
+      <div className="container min-w-[140vw]_ sm:min-w-[95vw] md:px-4_ lg:px-6_ py-2_ w-full mx-auto">
         {/* <Header title={title} /> */}
         <Nav /> 
         {/* <PageTitle title={title} /> */}

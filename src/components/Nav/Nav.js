@@ -206,7 +206,7 @@ const Nav = () => {
       {/* <div class="grid grid-rows-2 grid-flow-col gap-4_ "> */}
       <div className="grid gap-4_">
         <div className="grid grid-cols-3 gap-4 ">
-          <div>
+          <div className='hidden sm:block'>
             <div className={styles.navSearch}>
              
             </div>

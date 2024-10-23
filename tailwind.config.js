@@ -6,6 +6,9 @@ module.exports = {
       backgroundImage: {
         'hero-background': "url('/images/hero.jpg')",
       },
+      colors: {
+        "primary-color": "var(--wp--color--primary)",
+      }
     },
   },
   plugins: [],

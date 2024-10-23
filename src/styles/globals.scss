@@ -85,8 +85,8 @@ a:active, a:focus, a:hover {
   font-family: --font-lato;
 }
 :root {
-  --wp--style--global--content-size: 1280px;
-  --wp--style--global--wide-size: 1310px;
+  --wp--style--global--content-size: 1350px;
+  --wp--style--global--wide-size: 1380px;
 }
 
 .wp-site-blocks {
@@ -486,7 +486,7 @@ ul.product-categories>li ul{
 .footer-titulo a{
   color: #2e3540;
 }
-.footer-titulo img{
+.footer-titulo img, .font-semi img{
   display: inline-block;
 }
 .nav-footer a {

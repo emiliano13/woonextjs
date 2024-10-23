@@ -43,6 +43,7 @@
     "react-inner-image-zoom": "^3.0.2",
     "react-instantsearch-dom": "^6.40.4",
     "sass": "^1.79.4",
+    "sharp": "^0.33.5",
     "style.css": "^1.0.3",
     "uuid": "^10.0.0"
   },

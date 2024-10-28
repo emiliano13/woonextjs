@@ -303,13 +303,15 @@ export const QUERY_PRODUCT_CATEGORY_BY_SLUG = gql`
           slug
           image {
             sourceUrl(size: WOOCOMMERCE_SINGLE)
-          }
+            srcSet
+          }          
           products(first: 1) {
             nodes {
               name
               featuredImage {
                 node {
                   sourceUrl(size: WOOCOMMERCE_SINGLE)
+                  srcSet
                 }
               }
             }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 // Components
 import Layout from '@/components/Layout/Layout.component';
+
 // Utilities
 import client from '@/utils/apollo/ApolloClient';
 

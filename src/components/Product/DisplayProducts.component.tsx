@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { filteredVariantPrice, paddedPrice } from '@/utils/functions/functions';
 import Image from 'next/image';
+import imageNotFound from '../../../public/images/product-not-found.png';
 interface Image {
   __typename: string;
   sourceUrl?: string;
@@ -48,10 +49,8 @@ interface IDisplayProductsProps {
 
 const DisplayProducts = ({ products }: IDisplayProductsProps) => (
   <section className="container mx-auto bg-white">
-    <div
-      id="product-container"
-      className="flex flex-wrap items-center mb-[120px] md:mb-0"
-    >      
+    <div id="product-container" className="flex flex-wrap items-center mb-[120px] md:mb-0">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
       {products ? (
         products.map(
           ({
@@ -77,20 +76,23 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
             }
 
             return (
-              <div
+              <div key={uuidv4()} className="text-center cursor-pointer product-box pb-4 px-2">
+              {/* <div
                 key={uuidv4()}
                 className="flex flex-col p-1 md:p-6 md:w-1/2 xl:w-1/4 product-box"
-              >
+              > */}
                 <Link
                   href={`/produit/${encodeURIComponent(slug,)}`}
                 >
                   
                     {image ? (                      
                       <Image
+                      className='w-300 md:w-400 h-auto'
                         src={image.sourceUrl!}
                         priority={true}
-                        width={250}
-                        height={250}
+                        width={300}
+                        height={300}
+                        sizes="(max-width: 768px) 300px, 400px"
                         alt={name}
                         //   sizes="100vw"
                         //   style={{
@@ -99,21 +101,21 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
                         //   }}
                       />              
                     ) : (
-                      <img
-                        id="product-image"
-                        className="transition duration-500 ease-in-out transform cursor-pointer hover:grow hover:shadow-lg hover:scale-105"
+                     <Image
+                        className="w-300 md:w-400 h-auto transition duration-500 ease-in-out transform cursor-pointer hover:grow hover:shadow-lg hover:scale-105"
                         alt={name}
-                        src={
-                          process.env.NEXT_PUBLIC_PLACEHOLDER_SMALL_IMAGE_URL
-                        }
+                        width={300}
+                        height={300}
+                        src={imageNotFound}
                       />
                     )}
                   
                 </Link>
                 <Link
-                  href={`/produkt/${encodeURIComponent(
-                    slug,
-                  )}?id=${encodeURIComponent(databaseId)}`}
+                  href={`/produit/${encodeURIComponent(slug,)}`}
+                  // href={`/produkt/${encodeURIComponent(
+                  //   slug,
+                  // )}?id=${encodeURIComponent(databaseId)}`}
                 >
                   <div className="uppercase text-center">{name}</div>
                  
@@ -146,6 +148,7 @@ const DisplayProducts = ({ products }: IDisplayProductsProps) => (
           Ingen produkter funnet
         </div>
       )}
+    </div>
     </div>
   </section>
 );

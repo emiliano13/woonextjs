@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaSearch } from 'react-icons/fa';
 
 // import useSite from 'hooks/use-site';
 import useSite from '../../hooks/use-site'
-
 
 //import useSearch, { SEARCH_STATE_LOADED } from '../../hooks/use-search';
 //import { postPathBySlug } from 'lib/posts';

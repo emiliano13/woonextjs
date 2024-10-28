@@ -5,6 +5,7 @@ import Layout from '@/components/Layout/Layout.component';
 import DisplayProducts from '@/components/Product/DisplayProducts.component';
 import DisplaySubcategories from '../../components/Category/DisplaySubcategories.component';
 import NextBreadcrumb from '@/components/BreadCrumb';
+//import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner.component';
 
 import CategoriesMenu from '@/components/CategoriesMenu';
 
@@ -23,8 +24,9 @@ const ProductCategorie = ({
   products,
   categories
 }) => {
+  //const [isLoading, setIsLoading] = useState(true);
 
-    const paths = usePathname();
+  const paths = usePathname();
   const pathNames = paths.split('/').filter((path) => path);
   let breadCrumb = [];
   categories?.map((item) => {
@@ -33,7 +35,7 @@ const ProductCategorie = ({
         name: item.name,
         slug: item.slug,
       };
-      console.log(`activee ${item.name}`);
+      //console.log(`activee ${item.name}`);
       breadCrumb.push(nodo);
     }
     item.children.edges.map((item2) => {
@@ -93,9 +95,16 @@ const ProductCategorie = ({
 
 export default withRouter(ProductCategorie);
 
-export const getServerSideProps = async ({ params = {} ,
-}) => {
-    console.log(params)
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
+export const getStaticProps = async ({ params = {} ,}) => {
+// export const getServerSideProps = async ({ params = {} ,
+// }) => {
+    //console.log(params)
     const slug = params.slug[1] ? params.slug[1] : params.slug[0];
   //console.log(`SLUG ${slug}`)
   const res = await client.query({

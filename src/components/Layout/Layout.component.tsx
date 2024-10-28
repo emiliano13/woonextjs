@@ -1,5 +1,5 @@
 // Imports
-import { ReactNode, useContext, useEffect } from 'react';
+import { ReactNode, useContext, useEffect, Suspense } from 'react';
 import { useQuery } from '@apollo/client';
 import localFont from '@next/font/local';
 import { Lato } from 'next/font/google';
@@ -93,9 +93,13 @@ const Layout = ({ children, title }: ILayoutProps) => {
         {/* <Header title={title} /> */}
         <Nav /> 
         {/* <PageTitle title={title} /> */}
+        
         <main className="flex-grow">
+         
           {children}
+          
         </main>
+        
         <Footer />
         <Stickynav />
       </div>

@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-
+import { Suspense } from 'react';
 // Components
 import Layout from '@/components/Layout/Layout.component';
 import DisplayProducts from '@/components/Product/DisplayProducts.component';
@@ -67,7 +67,9 @@ const ProductCategorie = ({
             containerClasses="flex pb-2 pl-0 breadcrumb"
             listClasses="hover:text-gray-900 mx-2 text-gray-400 text-sm "
             capitalizeLinks
-          />
+          />          
+
+          <Suspense fallback={<div>Loading...</div>}> 
 
           {category.children.nodes.length ? (
             <DisplaySubcategories subcategories={category.children.nodes} parentSlug={category.slug} />
@@ -82,6 +84,8 @@ const ProductCategorie = ({
               )}              
             </>
           )}
+
+          </Suspense>
        {/* {products ? (
          <DisplayProducts products={products} />
        ) : (

@@ -55,7 +55,10 @@ const ProductCategorie = ({
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         
         
-        <div className="col-span-1 p-4">{<CategoriesMenu categories={categories} />}</div>
+        <div className="col-span-1 p-4">{
+          <Suspense fallback={<div>Loading...</div>}> 
+          <CategoriesMenu /></Suspense>}
+        </div>
         
         <div className="col-span-4 p-4">
 
@@ -69,7 +72,7 @@ const ProductCategorie = ({
             capitalizeLinks
           />          
 
-          <Suspense fallback={<div>Loading...</div>}> 
+          
 
           {category.children.nodes.length ? (
             <DisplaySubcategories subcategories={category.children.nodes} parentSlug={category.slug} />
@@ -85,12 +88,8 @@ const ProductCategorie = ({
             </>
           )}
 
-          </Suspense>
-       {/* {products ? (
-         <DisplayProducts products={products} />
-       ) : (
-         <div className="mt-8 text-2xl text-center">Laster produkt ...</div>
-       )} */}
+          
+      
        </div>
        </div>
     </Layout>
@@ -124,9 +123,9 @@ const res2 = await client.query({
     variables: { slug },
   });
   
-  const res3 = await client.query({
-    query: QUERY_ALL_CATEGORIES_MENU
-  });
+  // const res3 = await client.query({
+  //   query: QUERY_ALL_CATEGORIES_MENU
+  // });
 
   //console.dir(`products T ${JSON.stringify(res2.data)} ` )
   return {
@@ -134,7 +133,7 @@ const res2 = await client.query({
       categoryName: res.data.productCategory.name,
       products: res2.data.productCategory.products.nodes,
       category: res.data.productCategory,
-      categories: res3.data.productCategories.nodes
+     // categories: res3.data.productCategories.nodes
     },
   };
 };

@@ -1,5 +1,5 @@
 //import styles from './DisplayProducts.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 // import { useRouter } from 'next/navigation';
@@ -8,10 +8,22 @@ import Link from 'next/link';
 //import { usePathname } from 'next/navigation';
 //import { useSelectedLayoutSegment } from 'next/navigation';
 
-//import CategoriesMenuLink from 'components/CategoriesMenuLink';
+import client from '@/utils/apollo/ApolloClient';
 
-const CategoriesProduct = ({ children, categories, ...rest }) => {
+import { QUERY_ALL_CATEGORIES_MENU } from '@/utils/gql/GQL_QUERIES';
+
+async function getMenu(cat) {
+  const res3 = await client.query({
+    query: QUERY_ALL_CATEGORIES_MENU
+  });
+//console.log(res3.data.productCategories.nodes)
+  return res3.data.productCategories.nodes;
+}
+
+const CategoriesProduct = ({ children, ...rest }) => {
   const [isOpen, setIsOpen] = useState(0);
+
+  const [categories, setCategories] = useState();
   //const [activeNav, setActiveNav] = useState(0);
 
   let activeNavClass = '';
@@ -26,15 +38,31 @@ const CategoriesProduct = ({ children, categories, ...rest }) => {
   const { href } = rest;
   console.log(`href ${href} `);
 
+  useEffect(() => {
+    const fetchData = async()=> {
+      const data = await getMenu()
+      setCategories(data)
+      return data
+    }
+    fetchData()
+    
+  }, []);
 
 
+  // useEffect(() => {
+  //   let res =  getMenu();
+  //   setCategories(res)
+  // }, []);
+  //let { categories } = getMenu();
+//console.log(`cat ${JSON.stringify(categories)}`)
   return (
     <>
       <ul className="product-categories">
-        {categories.length &&
+      
+      {categories &&
           categories.map((item) => {
             const active = isOpen == item.id ? ' active' : ' ';
-         
+         //console.log(`item ${item}`)
             return (
               //   <li key={item.id} onClick={() => handleToggle(item.id)} className={isOpen == item.id ? ' active' : null }>
               <li key={item.id} onClick={() => handleToggle(item.id)} className={`${active} ${activeNavClass}`}>
@@ -68,6 +96,7 @@ const CategoriesProduct = ({ children, categories, ...rest }) => {
               </li>
             );
           })}
+        
       </ul>
       {children}
     </>

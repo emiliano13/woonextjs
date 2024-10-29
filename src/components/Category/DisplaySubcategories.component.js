@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import imageNotFound from '../../../public/images/product-not-found.png';
 
-const DisplaySubcategories = ({ children, subcategories, parentSlug }) => {
+export default function DisplaySubcategories({ children, subcategories, parentSlug }) {
+
+//const DisplaySubcategories = ({ children, subcategories, parentSlug }) => {
   return (
     <div id="product-container" className="flex flex-wrap items-center mb-[120px] md:mb-0">
       {/* <div {...rest} className={DisplaySubcategoriesClassName}> */}
@@ -100,4 +102,5 @@ const DisplaySubcategories = ({ children, subcategories, parentSlug }) => {
   );
 };
 
-export default DisplaySubcategories;
+
+//export default DisplaySubcategories;

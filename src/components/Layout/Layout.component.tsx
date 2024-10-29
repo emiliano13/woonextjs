@@ -64,7 +64,7 @@ const geogrotesqueRegular = localFont({ src: '../../../public/fonts/180808104102
 const Layout = ({ children, title }: ILayoutProps) => {
   const { setCart } = useContext(CartContext);
 
-  const { data, refetch } = useQuery(GET_CART, {
+ /*const { data, refetch } = useQuery(GET_CART, {
     notifyOnNetworkStatusChange: true,
     onCompleted: () => {
       // Update cart in the localStorage.
@@ -84,7 +84,7 @@ const Layout = ({ children, title }: ILayoutProps) => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [refetch]);*/
 
   return (
     // className="flex flex-col min-h-screen w-full mx-auto"

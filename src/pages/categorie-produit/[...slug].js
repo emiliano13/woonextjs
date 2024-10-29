@@ -57,8 +57,7 @@ const ProductCategorie = ({
         
         <div className="col-span-1 p-4">{
           <Suspense fallback={<div>Loading...</div>}> 
-          <CategoriesMenu /></Suspense>}
-        </div>
+          <CategoriesMenu categories={categories} /></Suspense>}</div>
         
         <div className="col-span-4 p-4">
 
@@ -123,9 +122,9 @@ const res2 = await client.query({
     variables: { slug },
   });
   
-  // const res3 = await client.query({
-  //   query: QUERY_ALL_CATEGORIES_MENU
-  // });
+  const res3 = await client.query({
+    query: QUERY_ALL_CATEGORIES_MENU
+  });
 
   //console.dir(`products T ${JSON.stringify(res2.data)} ` )
   return {
@@ -133,7 +132,7 @@ const res2 = await client.query({
       categoryName: res.data.productCategory.name,
       products: res2.data.productCategory.products.nodes,
       category: res.data.productCategory,
-     // categories: res3.data.productCategories.nodes
+      categories: res3.data.productCategories.nodes
     },
   };
 };

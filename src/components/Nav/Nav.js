@@ -230,6 +230,7 @@ const Nav = () => {
           </ul>
         </div>
       </div>
+      
       {/* <Section className={styles.navSection}>
         <p className={styles.navName}>
           <Link href="/">

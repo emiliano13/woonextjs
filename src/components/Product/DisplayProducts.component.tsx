@@ -50,7 +50,7 @@ interface IDisplayProductsProps {
 const DisplayProducts = ({ products }: IDisplayProductsProps) => (
   <section className="container mx-auto bg-white">
     <div id="product-container" className="flex flex-wrap items-center mb-[120px] md:mb-0">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
       {products ? (
         products.map(
           ({

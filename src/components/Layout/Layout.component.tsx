@@ -63,7 +63,7 @@ const geogrotesqueRegular = localFont({ src: '../../../public/fonts/180808104102
 
 const Layout = ({ children, title }: ILayoutProps) => {
   const { setCart } = useContext(CartContext);
-
+//ESTO AFECTA EL BLOCKING TIME
  /*const { data, refetch } = useQuery(GET_CART, {
     notifyOnNetworkStatusChange: true,
     onCompleted: () => {

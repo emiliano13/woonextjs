@@ -9,7 +9,7 @@ export default function DisplaySubcategories({ children, subcategories, parentSl
   return (
     <div id="product-container" className="flex flex-wrap items-center mb-[120px] md:mb-0">
       {/* <div {...rest} className={DisplaySubcategoriesClassName}> */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {subcategories.map((item) => (
           <div key={item.id} className="text-center cursor-pointer product-box pb-4 px-2">
             <Link href={`/categorie-produit/${parentSlug}/${item.slug}`}>

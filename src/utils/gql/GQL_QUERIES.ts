@@ -425,6 +425,13 @@ export const QUERY_GET_MENU_BY_LOCATION = gql`
                 title
                 target
                 path
+                menuImagen {
+                  imagenMenu {
+                    node {
+                      sourceUrl
+                    }
+                  }
+                }
               }            
           }
           name

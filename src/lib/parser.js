@@ -39,12 +39,14 @@ export default function parseHtml(html) {
         console.log(attribs.src)
         if(attribs.src.includes('youtube')) {
         //if(/src=".+youtube/.test(attribs.src)){ console.log( 'esyoutube' )}
+        let regex = /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
+        let youtubeId = regex.exec(attribs.src)[3] ;
         return (
         <LiteYouTubeEmbed
         aspectHeight="9"
         aspectWidth="16"
-        id="TMMX32ershU"
-        title="test"
+        id={youtubeId}
+        title="kitchen infrico"
         />
         )
         }

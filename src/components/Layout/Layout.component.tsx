@@ -1,7 +1,7 @@
 // Imports
 import { ReactNode, useContext, useEffect, Suspense } from 'react';
 import { useQuery } from '@apollo/client';
-import localFont from '@next/font/local';
+import localFont from 'next/font/local';
 import { Lato } from 'next/font/google';
 
 // Components

@@ -16,7 +16,7 @@ export default function DisplaySubcategories({ children, subcategories, parentSl
               {(() => {
                 //Imagen subcategoria
                 if (item.image) {
-                  console.log(item.image.srcSet)
+                  //console.log(item.image.srcSet)
                   return (
                     <Image
                       className='w-300 md:w-400 h-auto'

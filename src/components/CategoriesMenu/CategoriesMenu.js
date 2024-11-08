@@ -30,8 +30,8 @@ const CategoriesProduct = ({ children, categories, ...rest }) => {
 
   return (
     <>
-      <span class="uppercase shop-sidebar ">Catégories de produits</span>
-      <div class="is-divider small"></div>
+      <span className="uppercase shop-sidebar ">Catégories de produits</span>
+      <div className="is-divider small"></div>
       <ul className="product-categories  divide-y">
         {categories.length &&
           categories.map((item) => {

@@ -28,7 +28,7 @@ const Page = ({
   };
   
   export default withRouter(Page);
-  
+  /*
   export const getServerSideProps = async ({
     params = {} ,
   }) => {
@@ -38,9 +38,43 @@ const Page = ({
       query: QUERY_PAGE_BY_URI,
       variables: { uri: slugParent },
     });
-    console.log( data )
+    if (!data.page) { 
+      return {
+        notFound: true,
+      }
+     }
+    //console.log( data )
+
     return {
       props: { page: data.page, loading, networkStatus },
     };
   };
-  
+  */
+
+
+
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
+export const getStaticProps = async ({ params = {} ,}) => {
+  const { slugParent, slugChild } = params;
+  console.log(`slug page 2 ${JSON.stringify(params)} `)
+  const { data, loading, networkStatus } = await client.query({
+    query: QUERY_PAGE_BY_URI,
+    variables: { uri: slugParent },
+  });
+  if (!data.page) { 
+    return {
+      notFound: true,
+    }
+   }
+  //console.log( data )
+
+  return {
+    props: { page: data.page, loading, networkStatus },
+  };
+};

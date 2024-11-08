@@ -512,7 +512,11 @@ export const QUERY_PAGE_BY_URI = gql`
       }
       slug
       title
-      uri
+      uri,
+      seo {
+        metaDesc
+        title
+      }
     }
   }
 `;
